@@ -4,12 +4,12 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "placas_mae")
+@Table(name = "componentes")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class PlacaMae {
+public class Componentes {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,20 +19,26 @@ public class PlacaMae {
     private String nome;
 
     @Column(nullable = false, length = 50)
-    private String soqueteCpu;
+    private String tipo;
 
     @Column(nullable = false)
-    private int quantidadeSlotRam;
+    private int potenciaConsumida;
 
-    @Column(nullable = false, length = 50)
-    private String compatibilidadeGpu;
+    @Column(nullable = false)
+    private double preco;
 
-    @Column(nullable = false, length = 50)
-    private String formato;
+    @Column(nullable = false, length = 100)
+    private String fabricante;
 
     @Column(nullable = false, columnDefinition = "TEXT")
     private String descricao;
 
     @Column(nullable = false)
-    private double preco;
+    private double tamanho;
+
+    @Column(nullable = true, length = 50)
+    private String socketCpu;
+
+    @Column(nullable = true, length = 50)
+    private String pciCompatibilidade;
 }
