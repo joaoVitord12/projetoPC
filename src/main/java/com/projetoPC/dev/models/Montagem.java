@@ -3,6 +3,7 @@ package com.projetoPC.dev.models;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -26,16 +27,16 @@ public class Montagem {
     private LocalDate dataMontagem;
 
     @Column(nullable = false)
-    private double custoTotal;
+    private BigDecimal custoTotal;
 
     @Column(nullable = false)
-    private double voltagemTotal;
+    private BigDecimal voltagemTotal;
 
     @Column(nullable = false)
-    private int potenciaFonteRecomendada;
+    private BigDecimal potenciaFonteRecomendada;
 
     @Column(nullable = false)
-    private double consumoEstimadoKwh;
+    private BigDecimal consumoEstimadoKwh;
 
     @ManyToOne
     @JoinColumn(name = "id_fonte", nullable = false)

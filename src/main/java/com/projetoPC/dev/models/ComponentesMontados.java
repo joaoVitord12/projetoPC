@@ -22,4 +22,10 @@ public class ComponentesMontados {
     @ManyToOne
     @JoinColumn(name = "id_componente", nullable = false)
     private Componentes componente;
+
+    @ManyToOne
+    @JoinColumn(name = "id_placa_mae", nullable = false)
+    private PlacaMae placaMae;
+
+
 }

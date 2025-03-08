@@ -3,6 +3,9 @@ package com.projetoPC.dev.models;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
+import java.util.Optional;
+
 @Entity
 @Table(name = "componentes")
 @Getter
@@ -19,13 +22,13 @@ public class Componentes {
     private String nome;
 
     @Column(nullable = false, length = 50)
-    private String tipo;
+    private Tipo tipo;
 
     @Column(nullable = false)
-    private int potenciaConsumida;
+    private BigDecimal potenciaConsumida;
 
     @Column(nullable = false)
-    private double preco;
+    private BigDecimal preco;
 
     @Column(nullable = false, length = 100)
     private String fabricante;
@@ -34,11 +37,14 @@ public class Componentes {
     private String descricao;
 
     @Column(nullable = false)
-    private double tamanho;
-
-    @Column(nullable = true, length = 50)
-    private String socketCpu;
+    private String tamanho;
 
     @Column(nullable = true, length = 50)
     private String pciCompatibilidade;
+
+    @ManyToOne
+    @JoinColumn(name = "id_socket_cpu", nullable = false)
+    private SocketCPU SocketCpu;
+
+
 }

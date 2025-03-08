@@ -18,14 +18,11 @@ public class PlacaMae {
     @Column(nullable = false, length = 100)
     private String nome;
 
-    @Column(nullable = false, length = 50)
-    private String soqueteCpu;
-
     @Column(nullable = false)
     private int quantidadeSlotRam;
 
     @Column(nullable = false, length = 50)
-    private String compatibilidadeGpu;
+    private String pciCompatibilidade;
 
     @Column(nullable = false, length = 50)
     private String formato;
@@ -35,4 +32,8 @@ public class PlacaMae {
 
     @Column(nullable = false)
     private double preco;
+
+    @ManyToOne
+    @JoinColumn(name = "id_socket_cpu", nullable = false)
+    private SocketCPU socketCpu;
 }

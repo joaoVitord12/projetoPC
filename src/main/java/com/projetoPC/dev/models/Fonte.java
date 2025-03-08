@@ -32,8 +32,9 @@ public class Fonte {
     @Column(name = "tipo_cabos", length = 255)
     private String tipoCabos;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private String modularidade;
+    private Modularidade modularidade;
 
     @Column(name = "certificacao", nullable = false)
     private String certificacao;
