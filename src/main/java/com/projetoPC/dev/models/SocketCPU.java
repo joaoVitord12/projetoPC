@@ -9,7 +9,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SocketCpu {
+public class SocketCPU {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

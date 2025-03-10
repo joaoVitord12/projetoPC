@@ -28,7 +28,7 @@ public class PlacaMae {
 
     @ManyToOne
     @JoinColumn(name = "socket_cpu_id", nullable = false)
-    private SocketCpu socketCpu;
+    private SocketCPU socketCpu;
 
     @Column(nullable = false, length = 50)
     private String chipset;

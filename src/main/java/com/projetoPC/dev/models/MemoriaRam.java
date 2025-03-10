@@ -36,6 +36,6 @@ public class MemoriaRam {
     private String tipo;
 
     @Column(nullable = false, precision = 10, scale = 2)
-    private BigDecimal consumo;
+    private Integer consumo;
 
 }

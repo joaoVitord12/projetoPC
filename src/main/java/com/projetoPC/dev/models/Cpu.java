@@ -31,7 +31,7 @@ public class Cpu {
 
     @ManyToOne
     @JoinColumn(name = "socket_cpu_id", nullable = false)
-    private SocketCpu socketCpu;
+    private SocketCPU socketCpu;
 
     @Column(nullable = true)
     private Integer nucleos;
