@@ -17,26 +17,15 @@ public class Fonte {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
-    private String nome;
-
     @Column(nullable = false)
-    private int potencia;
+    private Integer potencia;
 
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal preco;
 
-    @Column(name = "efficiency_rating", nullable = false)
-    private String eficiencia;
+    @Column(nullable = false, length = 50)
+    private String fabricante;
 
-    @Column(name = "tipo_cabos", length = 255)
-    private String tipoCabos;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Modularidade modularidade;
-
-    @Column(name = "certificacao", nullable = false)
-    private String certificacao;
-
-}
+    @Column(nullable = true, length = 50)
+    private String efficiencyRating;
+    }

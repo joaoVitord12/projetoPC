@@ -16,16 +16,28 @@ public class ComponentesMontados {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "id_montagem", nullable = false)
-    private Montagem montagem;
+    @JoinColumn(name = "computador_montagem_id", nullable = false)
+    private ComputadorMontagem computadorMontagem;
 
     @ManyToOne
-    @JoinColumn(name = "id_componente", nullable = false)
-    private Componentes componente;
+    @JoinColumn(name = "cpu_id")
+    private Cpu cpu;
 
     @ManyToOne
-    @JoinColumn(name = "id_placa_mae", nullable = false)
+    @JoinColumn(name = "gpu_id")
+    private Gpu gpu;
+
+    @ManyToOne
+    @JoinColumn(name = "placa_mae_id")
     private PlacaMae placaMae;
 
+    @ManyToOne
+    @JoinColumn(name = "fonte_id")
+    private Fonte fonte;
 
+    @ManyToOne
+    @JoinColumn(name = "ram_id")
+    private MemoriaRam memoriaRam;
+
+    private Integer quantidadeRam;
 }

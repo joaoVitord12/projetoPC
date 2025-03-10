@@ -6,12 +6,12 @@ import lombok.*;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "placa_mae")
+@Table(name = "memoria_ram")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class PlacaMae {
+public class MemoriaRam {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,22 +26,16 @@ public class PlacaMae {
     @Column(nullable = false, length = 100)
     private String fabricante;
 
-    @ManyToOne
-    @JoinColumn(name = "socket_cpu_id", nullable = false)
-    private SocketCpu socketCpu;
-
-    @Column(nullable = false, length = 50)
-    private String chipset;
+    @Column(nullable = false)
+    private Integer capacidade;
 
     @Column(nullable = false)
-    private Integer qtdSlotsRam;
+    private Integer frequencia;
 
-    @Column(nullable = true)
-    private Integer maxRamSuportada;
-
-    @Column(nullable = true)
-    private String tipoRamSuportado;
+    @Column(nullable = false, length = 10)
+    private String tipo;
 
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal consumo;
+
 }
