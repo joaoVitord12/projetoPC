@@ -26,10 +26,6 @@ public class PlacaMae {
     @Column(nullable = false, length = 100)
     private String fabricante;
 
-    @ManyToOne
-    @JoinColumn(name = "socket_cpu_id", nullable = false)
-    private SocketCPU socketCpu;
-
     @Column(nullable = false, length = 50)
     private String chipset;
 
@@ -39,9 +35,16 @@ public class PlacaMae {
     @Column(nullable = true)
     private Integer maxRamSuportada;
 
+    @Column(nullable = false)
+    private modelo modelo;
+
     @Column(nullable = true)
     private String tipoRamSuportado;
 
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal consumo;
+
+    @ManyToOne
+    @JoinColumn(name = "socket_cpu_id", nullable = false)
+    private SocketCPU socketCpu;
 }

@@ -41,6 +41,8 @@ public class PlacaMaeService {
         placaMaeDTO.setMaxRamSuportada(placaMae.getMaxRamSuportada());
         placaMaeDTO.setTipoRamSuportado(placaMae.getTipoRamSuportado());
         placaMaeDTO.setConsumo(placaMae.getConsumo());
+        placaMaeDTO.setSocketCpu(placaMae.getSocketCpu());
+        placaMaeDTO.setModelo(placaMae.getModelo());
         return placaMaeDTO;
     }
 
@@ -55,6 +57,8 @@ public class PlacaMaeService {
         placaMae.setMaxRamSuportada(placaMaeDTO.getMaxRamSuportada());
         placaMae.setTipoRamSuportado(placaMaeDTO.getTipoRamSuportado());
         placaMae.setConsumo(placaMaeDTO.getConsumo());
+        placaMae.setSocketCpu(placaMaeDTO.getSocketCpu());
+        placaMae.setModelo(placaMaeDTO.getModelo());
         return placaMae;
     }
 }

@@ -1,6 +1,7 @@
 package com.projetoPC.dev.dtos;
 
 import com.projetoPC.dev.models.SocketCPU;
+import com.projetoPC.dev.models.modelo;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -48,12 +49,14 @@ public class PlacaMaeDTO {
     @Positive(message = "A quantidade de energia deve ser um valor positivo")
     private BigDecimal consumo;
 
+    private modelo modelo;
+
     @NotNull(message = "O socket da CPU não pode estar em branco")
     private SocketCPU socketCpu;
 
     public PlacaMaeDTO(){}
 
-    public PlacaMaeDTO(Long id, String nome, BigDecimal preco, String fabricante, String chipset, Integer qtdSlotsRam, Integer maxRamSuportada, String tipoRamSuportado, BigDecimal consumo, SocketCPU socketCpu) {
+    public PlacaMaeDTO(Long id, String nome, BigDecimal preco, String fabricante, String chipset, Integer qtdSlotsRam, Integer maxRamSuportada, String tipoRamSuportado, BigDecimal consumo, SocketCPU socketCpu, modelo modelo) {
         this.id = id;
         this.nome = nome;
         this.preco = preco;
@@ -64,5 +67,6 @@ public class PlacaMaeDTO {
         this.tipoRamSuportado = tipoRamSuportado;
         this.consumo = consumo;
         this.socketCpu = socketCpu;
+        this.modelo = modelo;
     }
 }

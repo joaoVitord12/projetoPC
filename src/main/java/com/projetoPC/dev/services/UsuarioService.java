@@ -6,6 +6,8 @@ import com.projetoPC.dev.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UsuarioService {
 
@@ -29,6 +31,17 @@ public class UsuarioService {
         Usuario usuario = usuarioRepository.findById(id).orElseThrow(() ->
                 new IllegalArgumentException("Usuário não encontrado com o ID: " + id));
         usuarioRepository.delete(usuario);
+    }
+
+    public List<UsuarioDTO> listarUsuarios( ) {
+        List<Usuario> usuarios = usuarioRepository.findAll();
+        return usuarios.stream().map(this::convertToDTO).toList();
+    }
+
+    public UsuarioDTO buscarUsuarioPorId(Long id) {
+        Usuario usuario = usuarioRepository.findById(id).orElseThrow(() ->
+                new IllegalArgumentException("Usuário não encontrado com o ID: " + id));
+        return convertToDTO(usuario);
     }
 
     public UsuarioDTO convertToDTO(Usuario usuario) {
