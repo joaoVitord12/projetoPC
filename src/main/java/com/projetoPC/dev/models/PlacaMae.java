@@ -36,7 +36,7 @@ public class PlacaMae {
     private Integer maxRamSuportada;
 
     @Column(nullable = false)
-    private modelo modelo;
+    private Modelo modelo;
 
     @Column(nullable = true)
     private String tipoRamSuportado;
