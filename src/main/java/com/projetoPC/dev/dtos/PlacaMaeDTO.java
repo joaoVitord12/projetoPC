@@ -1,7 +1,7 @@
 package com.projetoPC.dev.dtos;
 
 import com.projetoPC.dev.models.SocketCPU;
-import com.projetoPC.dev.models.Modelo;
+import com.projetoPC.dev.enums.Modelo;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;

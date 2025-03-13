@@ -1,5 +1,6 @@
 package com.projetoPC.dev.models;
 
+import com.projetoPC.dev.enums.Modelo;
 import jakarta.persistence.*;
 import lombok.*;
 
