@@ -1,18 +1,20 @@
 package com.projetoPC.dev.dtos;
-
-import com.projetoPC.dev.models.SocketCPU;
 import com.projetoPC.dev.enums.Modelo;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class PlacaMaeDTO {
 
     private Long id;
@@ -49,24 +51,8 @@ public class PlacaMaeDTO {
     @Positive(message = "A quantidade de energia deve ser um valor positivo")
     private BigDecimal consumo;
 
-    private Modelo modelo;
-
     @NotNull(message = "O socket da CPU não pode estar em branco")
-    private SocketCPU socketCpu;
+    private Long socketCpuId;
 
-    public PlacaMaeDTO(){}
-
-    public PlacaMaeDTO(Long id, String nome, BigDecimal preco, String fabricante, String chipset, Integer qtdSlotsRam, Integer maxRamSuportada, String tipoRamSuportado, BigDecimal consumo, SocketCPU socketCpu, Modelo modelo) {
-        this.id = id;
-        this.nome = nome;
-        this.preco = preco;
-        this.fabricante = fabricante;
-        this.chipset = chipset;
-        this.qtdSlotsRam = qtdSlotsRam;
-        this.maxRamSuportada = maxRamSuportada;
-        this.tipoRamSuportado = tipoRamSuportado;
-        this.consumo = consumo;
-        this.socketCpu = socketCpu;
-        this.modelo = modelo;
-    }
+    private Modelo modelo;
 }

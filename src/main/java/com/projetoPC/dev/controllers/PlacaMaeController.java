@@ -28,5 +28,4 @@ public class PlacaMaeController {
         return ResponseEntity.noContent().build();
     }
 
-
 }
