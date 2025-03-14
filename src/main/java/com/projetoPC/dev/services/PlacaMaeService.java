@@ -6,6 +6,8 @@ import com.projetoPC.dev.repositories.PlacaMaeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PlacaMaeService {
 
@@ -28,6 +30,53 @@ public class PlacaMaeService {
         PlacaMae placaMae = placaMaeRepository.findById(id).orElseThrow(() ->
                 new IllegalArgumentException("Placa MAE não encontrado com o ID: " + id));
         placaMaeRepository.delete(placaMae);
+    }
+
+    public List<PlacaMaeDTO> listarPlacaMaes() {
+        List<PlacaMae> placaMaes = placaMaeRepository.findAll();
+        return placaMaes.stream().map(this::convertToDTO).toList();
+    }
+
+    public PlacaMaeDTO buscarPlacaMaePorId(Long id) {
+        PlacaMae placaMae = placaMaeRepository.findById(id).orElseThrow(() ->
+                new IllegalArgumentException("Placa MAE não encontrado com o ID: " + id));
+        return convertToDTO(placaMae);
+    }
+
+    public PlacaMaeDTO convertToDTO(PlacaMae placaMae) {
+        PlacaMaeDTO placaMaeDTO = new PlacaMaeDTO();
+        placaMaeDTO.setId(placaMae.getId());
+        placaMaeDTO.setNome(placaMae.getNome());
+        placaMaeDTO.setPreco(placaMae.getPreco());
+        placaMaeDTO.setFabricante(placaMae.getFabricante());
+        placaMaeDTO.setChipset(placaMae.getChipset());
+        placaMaeDTO.setQtdSlotsRam(placaMae.getQtdSlotsRam());
+        placaMaeDTO.setMaxRamSuportada(placaMae.getMaxRamSuportada());
+        placaMaeDTO.setTipoRamSuportado(placaMae.getTipoRamSuportado());
+        placaMaeDTO.setConsumo(placaMae.getConsumo());
+
+        placaMaeDTO.setSocketCpuId(placaMae.getSocketCpu().getId());
+
+        placaMaeDTO.setModelo(placaMae.getModelo());
+        return placaMaeDTO;
+    }
+
+    public PlacaMae convertToEntity(PlacaMaeDTO placaMaeDTO) {
+        PlacaMae placaMae = new PlacaMae();
+        placaMae.setNome(placaMaeDTO.getNome());
+        placaMae.setPreco(placaMaeDTO.getPreco());
+        placaMae.setFabricante(placaMaeDTO.getFabricante());
+        placaMae.setChipset(placaMaeDTO.getChipset());
+        placaMae.setQtdSlotsRam(placaMaeDTO.getQtdSlotsRam());
+        placaMae.setMaxRamSuportada(placaMaeDTO.getMaxRamSuportada());
+        placaMae.setTipoRamSuportado(placaMaeDTO.getTipoRamSuportado());
+        placaMae.setConsumo(placaMaeDTO.getConsumo());
+
+        placaMae.setSocketCpu(placaMaeRepository.findById(placaMaeDTO.getSocketCpuId()).orElseThrow(() ->
+                new IllegalArgumentException("Socket CPU não encontrado com o ID: " + placaMaeDTO.getSocketCpuId())));
+
+        placaMae.setModelo(placaMaeDTO.getModelo());
+        return placaMae;
     }
 
 }

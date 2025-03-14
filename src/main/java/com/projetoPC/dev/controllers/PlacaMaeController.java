@@ -23,8 +23,8 @@ public class PlacaMaeController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletarPlacaMae(@RequestBody PlacaMaeDTO placaMaeDTO) {
-        placaMaeService.deletarPlacaMae(placaMaeDTO.getId());
+    public ResponseEntity<Void> deletarPlacaMae(@PathVariable Long id) {
+        placaMaeService.deletarPlacaMae(id);
         return ResponseEntity.noContent().build();
     }
 
