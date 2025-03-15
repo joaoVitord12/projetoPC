@@ -21,8 +21,11 @@ public class UsuarioSpec {
 
 
     public void verificarEmailNulo(Usuario usuario) {
-        if (isNull(usuario.getEmail())) throw new BusinessException(MSG_EMAIL_DUPLICADO);
+        if (usuario == null || isNull(usuario.getEmail())) {
+            throw new BusinessException(MSG_EMAIL_DUPLICADO);
+        }
     }
+
 
     public void verificarSeExisteUsuarioComEmailDuplicado(Usuario usuario) {
         if (nonNull(usuario)) {
