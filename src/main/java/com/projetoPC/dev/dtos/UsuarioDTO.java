@@ -3,11 +3,15 @@ package com.projetoPC.dev.dtos;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class UsuarioDTO {
 
     private Long id;
@@ -24,12 +28,4 @@ public class UsuarioDTO {
     @Size(min = 6, max = 20, message = "A senha deve ter entre 6 e 20 caracteres")
     private String senha;
 
-    public UsuarioDTO(){}
-
-    public UsuarioDTO(Long id, String nome, String email, String senha) {
-        this.id = id;
-        this.nome = nome;
-        this.email = email;
-        this.senha = senha;
-    }
 }

@@ -11,8 +11,9 @@ import java.util.List;
 @Service
 public class PlacaMaeService {
 
-    @Autowired
-    PlacaMaeRepository placaMaeRepository;
+    @Autowired PlacaMaeRepository placaMaeRepository;
+
+    @Autowired SocketCpuService socketCpuService;
 
     public PlacaMaeDTO cadastrarPlacaMae(PlacaMaeDTO placaMaeDTO) {
         return convertToDTO(placaMaeRepository.save(convertToEntity(placaMaeDTO)));
@@ -55,9 +56,10 @@ public class PlacaMaeService {
         placaMaeDTO.setTipoRamSuportado(placaMae.getTipoRamSuportado());
         placaMaeDTO.setConsumo(placaMae.getConsumo());
 
-        placaMaeDTO.setSocketCpuId(placaMae.getSocketCpu().getId());
-
         placaMaeDTO.setModelo(placaMae.getModelo());
+
+        placaMaeDTO.setSocketCpu(placaMae.getSocketCpu());
+
         return placaMaeDTO;
     }
 
@@ -72,8 +74,7 @@ public class PlacaMaeService {
         placaMae.setTipoRamSuportado(placaMaeDTO.getTipoRamSuportado());
         placaMae.setConsumo(placaMaeDTO.getConsumo());
 
-        placaMae.setSocketCpu(placaMaeRepository.findById(placaMaeDTO.getSocketCpuId()).orElseThrow(() ->
-                new IllegalArgumentException("Socket CPU não encontrado com o ID: " + placaMaeDTO.getSocketCpuId())));
+        placaMae.setSocketCpu(placaMaeDTO.getSocketCpu());
 
         placaMae.setModelo(placaMaeDTO.getModelo());
         return placaMae;

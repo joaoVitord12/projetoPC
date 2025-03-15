@@ -1,5 +1,6 @@
 package com.projetoPC.dev.dtos;
 import com.projetoPC.dev.enums.Modelo;
+import com.projetoPC.dev.models.SocketCPU;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -52,7 +53,7 @@ public class PlacaMaeDTO {
     private BigDecimal consumo;
 
     @NotNull(message = "O socket da CPU não pode estar em branco")
-    private Long socketCpuId;
+    private SocketCPU socketCpu;
 
     private Modelo modelo;
 }

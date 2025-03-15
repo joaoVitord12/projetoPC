@@ -1,8 +1,10 @@
 package com.projetoPC.dev.services;
 
 import com.projetoPC.dev.dtos.UsuarioDTO;
+import com.projetoPC.dev.exceptions.BusinessException;
 import com.projetoPC.dev.models.Usuario;
 import com.projetoPC.dev.repositories.UsuarioRepository;
+import com.projetoPC.dev.specs.UsuarioSpec;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,14 +16,27 @@ public class UsuarioService {
     @Autowired
     UsuarioRepository usuarioRepository;
 
+    @Autowired
+    UsuarioSpec usuarioSpec;
+
     public UsuarioDTO cadastrarUsuario(UsuarioDTO usuarioDTO) {
+        Usuario usuarioEmail = usuarioRepository.findByEmail(usuarioDTO.getEmail());
+
+        usuarioSpec.verificarEmailNulo(usuarioEmail);
+        usuarioSpec.verificarSeExisteUsuarioComEmailDuplicado(usuarioEmail);
+
+
         Usuario usuario = convertToEntity(usuarioDTO);
         return convertToDTO(usuarioRepository.save(usuario));
     }
 
     public UsuarioDTO atualizarUsuario(UsuarioDTO usuarioDTO){
+        Usuario usuarioEmail = usuarioRepository.findByEmail(usuarioDTO.getEmail());
+        usuarioSpec.verificarEmailEmUso(usuarioEmail, usuarioDTO);
+
+
         Usuario usuario = usuarioRepository.findById(usuarioDTO.getId()).orElseThrow(() ->
-                new IllegalArgumentException("Usuário não encontrado com o ID: " + usuarioDTO.getId()));
+                new BusinessException("Usuário não encontrado com o ID: " + usuarioDTO.getId()));
         usuario = convertToEntity(usuarioDTO);
         usuarioRepository.save(usuario);
         return convertToDTO(usuario);
@@ -29,7 +44,7 @@ public class UsuarioService {
 
     public void deletarUsuario(Long id){
         Usuario usuario = usuarioRepository.findById(id).orElseThrow(() ->
-                new IllegalArgumentException("Usuário não encontrado com o ID: " + id));
+                new BusinessException("Usuário não encontrado com o ID: " + id));
         usuarioRepository.delete(usuario);
     }
 
@@ -40,7 +55,7 @@ public class UsuarioService {
 
     public UsuarioDTO buscarUsuarioPorId(Long id) {
         Usuario usuario = usuarioRepository.findById(id).orElseThrow(() ->
-                new IllegalArgumentException("Usuário não encontrado com o ID: " + id));
+                new BusinessException("Usuário não encontrado com o ID: " + id));
         return convertToDTO(usuario);
     }
 
