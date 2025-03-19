@@ -13,6 +13,8 @@ import java.util.List;
 @Service
 public class UsuarioService {
 
+    private static final String MSG_USUARIO = "Usuário não encontrado";
+
     @Autowired
     UsuarioRepository usuarioRepository;
 
@@ -21,7 +23,7 @@ public class UsuarioService {
 
     public UsuarioDTO cadastrarUsuario(UsuarioDTO usuarioDTO) {
         //Usuario usuarioEmailDuplicado = usuarioRepository.findByEmail(usuarioDTO.getEmail());
-        //usuarioSpec.verificarEmailNulo(usuarioEmailDuplicado);
+        //usuarioSpec.verificarEmailNulo();
 
         Usuario usuarioEmail = usuarioRepository.findByEmail(usuarioDTO.getEmail());
         usuarioSpec.verificarSeExisteUsuarioComEmailDuplicado(usuarioEmail);
@@ -31,15 +33,15 @@ public class UsuarioService {
     }
 
     public UsuarioDTO atualizarUsuario(UsuarioDTO usuarioDTO){
-        Usuario usuarioEmail = usuarioRepository.findByEmail(usuarioDTO.getEmail());
-        usuarioSpec.verificarEmailEmUso(usuarioEmail, usuarioDTO);
-
+        usuarioSpec.verificarCampoIdNulo(usuarioDTO.getId());
 
         Usuario usuario = usuarioRepository.findById(usuarioDTO.getId()).orElseThrow(() ->
-                new BusinessException("Usuário não encontrado com o ID: " + usuarioDTO.getId()));
+                new BusinessException(MSG_USUARIO));
+
+        usuarioSpec.verificarEmailEmUso(usuario, usuarioDTO);
+
         usuario = convertToEntity(usuarioDTO);
-        usuarioRepository.save(usuario);
-        return convertToDTO(usuario);
+        return convertToDTO(usuarioRepository.save(usuario));
     }
 
     public void deletarUsuario(Long id){
