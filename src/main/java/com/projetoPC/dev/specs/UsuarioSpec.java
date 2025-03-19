@@ -14,17 +14,17 @@ import static java.util.Objects.nonNull;
 public class UsuarioSpec {
     private static final String MSG_EMAIL = "Usuário já cadastrado com email: %s.";
     private static final String MSG_ID = "Id não pode ser nulo.";
-    private static final String MSG_EMAIL_DUPLICADO = "Email já cadastrado.";
+    private static final String MSG_EMAIL_DUPLICADO = "Email não pode ser nulo.";
 
     @Autowired
     private UsuarioRepository usuarioRepository;
 
 
-    public void verificarEmailNulo(Usuario usuario) {
-        if (usuario == null || isNull(usuario.getEmail())) {
-            throw new BusinessException(MSG_EMAIL_DUPLICADO);
-        }
-    }
+    //public void verificarEmailNulo(Usuario usuario) {
+    //    if (isNull(usuario.getEmail())) {
+    //        throw new BusinessException(String.format(MSG_EMAIL_DUPLICADO));
+    //    }
+    //}
 
 
     public void verificarSeExisteUsuarioComEmailDuplicado(Usuario usuario) {

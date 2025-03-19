@@ -20,11 +20,11 @@ public class UsuarioService {
     UsuarioSpec usuarioSpec;
 
     public UsuarioDTO cadastrarUsuario(UsuarioDTO usuarioDTO) {
+        //Usuario usuarioEmailDuplicado = usuarioRepository.findByEmail(usuarioDTO.getEmail());
+        //usuarioSpec.verificarEmailNulo(usuarioEmailDuplicado);
+
         Usuario usuarioEmail = usuarioRepository.findByEmail(usuarioDTO.getEmail());
-
-        usuarioSpec.verificarEmailNulo(usuarioEmail);
         usuarioSpec.verificarSeExisteUsuarioComEmailDuplicado(usuarioEmail);
-
 
         Usuario usuario = convertToEntity(usuarioDTO);
         return convertToDTO(usuarioRepository.save(usuario));
