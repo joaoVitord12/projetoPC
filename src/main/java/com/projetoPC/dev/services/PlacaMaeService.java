@@ -1,7 +1,9 @@
 package com.projetoPC.dev.services;
 
 import com.projetoPC.dev.dtos.PlacaMaeDTO;
+import com.projetoPC.dev.dtos.SocketCpuDTO;
 import com.projetoPC.dev.models.PlacaMae;
+import com.projetoPC.dev.models.SocketCPU;
 import com.projetoPC.dev.repositories.PlacaMaeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,9 +13,9 @@ import java.util.List;
 @Service
 public class PlacaMaeService {
 
-    @Autowired PlacaMaeRepository placaMaeRepository;
+    @Autowired private PlacaMaeRepository placaMaeRepository;
 
-    @Autowired SocketCpuService socketCpuService;
+    @Autowired private SocketCpuService socketCpuService;
 
     public PlacaMaeDTO cadastrarPlacaMae(PlacaMaeDTO placaMaeDTO) {
         return convertToDTO(placaMaeRepository.save(convertToEntity(placaMaeDTO)));
@@ -45,38 +47,41 @@ public class PlacaMaeService {
     }
 
     public PlacaMaeDTO convertToDTO(PlacaMae placaMae) {
-        PlacaMaeDTO placaMaeDTO = new PlacaMaeDTO();
-        placaMaeDTO.setId(placaMae.getId());
-        placaMaeDTO.setNome(placaMae.getNome());
-        placaMaeDTO.setPreco(placaMae.getPreco());
-        placaMaeDTO.setFabricante(placaMae.getFabricante());
-        placaMaeDTO.setChipset(placaMae.getChipset());
-        placaMaeDTO.setQtdSlotsRam(placaMae.getQtdSlotsRam());
-        placaMaeDTO.setMaxRamSuportada(placaMae.getMaxRamSuportada());
-        placaMaeDTO.setTipoRamSuportado(placaMae.getTipoRamSuportado());
-        placaMaeDTO.setConsumo(placaMae.getConsumo());
+        SocketCpuDTO socketCpuDTO = socketCpuService.convertToDTO(placaMae.getSocketCpu());
 
-        placaMaeDTO.setModelo(placaMae.getModelo());
-
-        placaMaeDTO.setSocketCpu(placaMae.getSocketCpu());
+        PlacaMaeDTO placaMaeDTO = new PlacaMaeDTO(
+                placaMae.getId(),
+                placaMae.getNome(),
+                placaMae.getPreco(),
+                placaMae.getFabricante(),
+                placaMae.getChipset(),
+                placaMae.getQtdSlotsRam(),
+                placaMae.getMaxRamSuportada(),
+                placaMae.getTipoRamSuportado(),
+                placaMae.getConsumo(),
+                placaMae.getModelo(),
+                socketCpuDTO
+                );
 
         return placaMaeDTO;
     }
 
     public PlacaMae convertToEntity(PlacaMaeDTO placaMaeDTO) {
-        PlacaMae placaMae = new PlacaMae();
-        placaMae.setNome(placaMaeDTO.getNome());
-        placaMae.setPreco(placaMaeDTO.getPreco());
-        placaMae.setFabricante(placaMaeDTO.getFabricante());
-        placaMae.setChipset(placaMaeDTO.getChipset());
-        placaMae.setQtdSlotsRam(placaMaeDTO.getQtdSlotsRam());
-        placaMae.setMaxRamSuportada(placaMaeDTO.getMaxRamSuportada());
-        placaMae.setTipoRamSuportado(placaMaeDTO.getTipoRamSuportado());
-        placaMae.setConsumo(placaMaeDTO.getConsumo());
+        SocketCPU socketCpu = socketCpuService.convertToEntity(placaMaeDTO.getSocketCpu());
 
-        placaMae.setSocketCpu(placaMaeDTO.getSocketCpu());
-
-        placaMae.setModelo(placaMaeDTO.getModelo());
+        PlacaMae placaMae = new PlacaMae(
+                placaMaeDTO.getId(),
+                placaMaeDTO.getNome(),
+                placaMaeDTO.getPreco(),
+                placaMaeDTO.getFabricante(),
+                placaMaeDTO.getChipset(),
+                placaMaeDTO.getQtdSlotsRam(),
+                placaMaeDTO.getMaxRamSuportada(),
+                placaMaeDTO.getTipoRamSuportado(),
+                placaMaeDTO.getConsumo(),
+                placaMaeDTO.getModelo(),
+                socketCpu
+        );
         return placaMae;
     }
 

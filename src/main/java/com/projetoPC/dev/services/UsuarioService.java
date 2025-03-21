@@ -15,16 +15,11 @@ public class UsuarioService {
 
     private static final String MSG_USUARIO = "Usuário não encontrado";
 
-    @Autowired
-    UsuarioRepository usuarioRepository;
+    @Autowired private UsuarioRepository usuarioRepository;
 
-    @Autowired
-    UsuarioSpec usuarioSpec;
+    @Autowired UsuarioSpec usuarioSpec;
 
     public UsuarioDTO cadastrarUsuario(UsuarioDTO usuarioDTO) {
-        //Usuario usuarioEmailDuplicado = usuarioRepository.findByEmail(usuarioDTO.getEmail());
-        //usuarioSpec.verificarEmailNulo();
-
         Usuario usuarioEmail = usuarioRepository.findByEmail(usuarioDTO.getEmail());
         usuarioSpec.verificarSeExisteUsuarioComEmailDuplicado(usuarioEmail);
 

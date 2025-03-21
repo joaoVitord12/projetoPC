@@ -5,13 +5,13 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "placa_mae")
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class PlacaMae {
 
     @Id
@@ -37,7 +37,8 @@ public class PlacaMae {
     private Integer maxRamSuportada;
 
     @Column(nullable = false)
-    private Modelo modelo;
+    @Enumerated(EnumType.STRING)
+    private List<Modelo> modelo;
 
     @Column(nullable = true)
     private String tipoRamSuportado;
@@ -48,4 +49,18 @@ public class PlacaMae {
     @ManyToOne
     @JoinColumn(name = "socket_cpu_id", nullable = false)
     private SocketCPU socketCpu;
+
+    public PlacaMae(Long id, String nome, BigDecimal preco, String fabricante, String chipset, Integer qtdSlotsRam, Integer maxRamSuportada, String tipoRamSuportado, BigDecimal consumo, List<Modelo> modelo, SocketCPU socketCpu) {
+        this.id = id;
+        this.nome = nome;
+        this.preco = preco;
+        this.fabricante = fabricante;
+        this.chipset = chipset;
+        this.qtdSlotsRam = qtdSlotsRam;
+        this.maxRamSuportada = maxRamSuportada;
+        this.tipoRamSuportado = tipoRamSuportado;
+        this.consumo = consumo;
+        this.modelo = modelo;
+        this.socketCpu = socketCpu;
+    }
 }

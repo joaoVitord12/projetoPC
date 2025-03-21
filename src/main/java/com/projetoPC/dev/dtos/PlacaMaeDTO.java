@@ -5,16 +5,15 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 public class PlacaMaeDTO {
 
@@ -53,7 +52,21 @@ public class PlacaMaeDTO {
     private BigDecimal consumo;
 
     @NotNull(message = "O socket da CPU não pode estar em branco")
-    private SocketCPU socketCpu;
+    private SocketCpuDTO socketCpu;
 
-    private Modelo modelo;
+    private List<Modelo> modelo;
+
+    public PlacaMaeDTO(Long id, String nome, BigDecimal preco, String fabricante, String chipset, Integer qtdSlotsRam, Integer maxRamSuportada, String tipoRamSuportado, BigDecimal consumo, List<Modelo> modelo, SocketCpuDTO socketCpu) {
+        this.id = id;
+        this.nome = nome;
+        this.preco = preco;
+        this.fabricante = fabricante;
+        this.chipset = chipset;
+        this.qtdSlotsRam = qtdSlotsRam;
+        this.maxRamSuportada = maxRamSuportada;
+        this.tipoRamSuportado = tipoRamSuportado;
+        this.consumo = consumo;
+        this.modelo = modelo;
+        this.socketCpu = socketCpu;
+    }
 }

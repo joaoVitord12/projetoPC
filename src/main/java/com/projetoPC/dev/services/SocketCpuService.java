@@ -1,9 +1,8 @@
 package com.projetoPC.dev.services;
 
 import com.projetoPC.dev.dtos.SocketCpuDTO;
-import com.projetoPC.dev.dtos.UsuarioDTO;
+import com.projetoPC.dev.exceptions.BusinessException;
 import com.projetoPC.dev.models.SocketCPU;
-import com.projetoPC.dev.models.Usuario;
 import com.projetoPC.dev.repositories.SocketCpuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +12,7 @@ import java.util.List;
 @Service
 public class SocketCpuService {
 
-    @Autowired SocketCpuRepository socketCpuRepository;
+    @Autowired private SocketCpuRepository socketCpuRepository;
 
     public SocketCpuDTO cadastrarSocketCpu(SocketCpuDTO socketCpuDTO) {
         SocketCPU socketCpu = convertToEntity(socketCpuDTO);
@@ -22,7 +21,7 @@ public class SocketCpuService {
 
     public SocketCpuDTO atualizarSocketCpu(SocketCpuDTO socketCpuDTO) {
         SocketCPU socketCpu = socketCpuRepository.findById(socketCpuDTO.getId()).orElseThrow(() ->
-                new IllegalArgumentException("Socket CPU não encontrado com o ID: " + socketCpuDTO.getId()));
+                new BusinessException("Socket CPU não encontrado com o ID: " + socketCpuDTO.getId()));
         socketCpu = convertToEntity(socketCpuDTO);
         socketCpuRepository.save(socketCpu);
         return convertToDTO(socketCpu);
@@ -60,7 +59,4 @@ public class SocketCpuService {
         socketCpuDTO.setDescricao(socketCpu.getDescricao());
         return socketCpuDTO;
     }
-
-
-
 }
