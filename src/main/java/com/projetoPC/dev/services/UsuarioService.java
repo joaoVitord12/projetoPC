@@ -17,7 +17,7 @@ public class UsuarioService {
 
     @Autowired private UsuarioRepository usuarioRepository;
 
-    @Autowired UsuarioSpec usuarioSpec;
+    @Autowired private UsuarioSpec usuarioSpec;
 
     public UsuarioDTO cadastrarUsuario(UsuarioDTO usuarioDTO) {
         Usuario usuarioEmail = usuarioRepository.findByEmail(usuarioDTO.getEmail());

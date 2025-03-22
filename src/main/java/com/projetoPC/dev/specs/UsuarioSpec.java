@@ -16,8 +16,7 @@ public class UsuarioSpec {
     private static final String MSG_ID = "Id não pode ser nulo.";
     private static final String MSG_EMAIL_DUPLICADO = "Email não pode ser nulo.";
 
-    @Autowired
-    private UsuarioRepository usuarioRepository;
+    @Autowired private UsuarioRepository usuarioRepository;
 
 
     //public void verificarEmailNulo(Usuario usuario) {
