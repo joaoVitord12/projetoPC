@@ -10,7 +10,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 public class UsuarioDTO {
 
@@ -28,4 +27,10 @@ public class UsuarioDTO {
     @Size(min = 6, max = 20, message = "A senha deve ter entre 6 e 20 caracteres")
     private String senha;
 
+    public UsuarioDTO(Long id, String nome, String email, String senha) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+    }
 }

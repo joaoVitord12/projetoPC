@@ -23,7 +23,7 @@ public class MemoriaRamService {
 
     public MemoriaRamDTO atualizarMemoriaRam(MemoriaRamDTO memoriaRamDTO) {
         MemoriaRam memoriaRam = memoriaRamRepository.findById(memoriaRamDTO.getId()).orElseThrow(() ->
-                new IllegalArgumentException("Placa MAE não encontrado com o ID: " + memoriaRamDTO.getId()));
+                new IllegalArgumentException("Placa ram não encontrado com o ID: " + memoriaRamDTO.getId()));
         memoriaRam = convertToEntity(memoriaRamDTO);
         memoriaRamRepository.save(memoriaRam);
         return convertToDTO(memoriaRam);
@@ -31,7 +31,7 @@ public class MemoriaRamService {
 
     public void deletarMemoriaRam(Long id) {
         MemoriaRam memoriaRam = memoriaRamRepository.findById(id).orElseThrow(() ->
-                new IllegalArgumentException("Placa MAE não encontrado com o ID: " + id));
+                new IllegalArgumentException("Placa ram não encontrado com o ID: " + id));
         memoriaRamRepository.delete(memoriaRam);
     }
 
@@ -42,25 +42,21 @@ public class MemoriaRamService {
 
     public MemoriaRamDTO buscarMemoriaRamPorId(Long id) {
         MemoriaRam memoriaRam = memoriaRamRepository.findById(id).orElseThrow(() ->
-                new IllegalArgumentException("Placa MAE não encontrado com o ID: " + id));
+                new IllegalArgumentException("Memoria ram não encontrado com o ID: " + id));
         return convertToDTO(memoriaRam);
     }
 
-    public MemoriaRamDTO convertToDTO(MemoriaRam memoriaRam) {
+    public MemoriaRamDTO convertToDTO (MemoriaRam memoriaRam) {
         MemoriaRamDTO memoriaRamDTO = new MemoriaRamDTO(
                 memoriaRam.getId(),
                 memoriaRam.getNome(),
                 memoriaRam.getPreco(),
                 memoriaRam.getFabricante(),
-                memoriaRam.getChipset(),
-                memoriaRam.getQtdSlotsRam(),
-                memoriaRam.getMaxRamSuportada(),
-                memoriaRam.getTipoRamSuportado(),
-                memoriaRam.getConsumo(),
-                memoriaRam.getModelo(),
-                socketCpuDTO
-                );
-
+                memoriaRam.getCapacidade(),
+                memoriaRam.getFrequencia(),
+                memoriaRam.getTipo(),
+                memoriaRam.getConsumo()
+        );
         return memoriaRamDTO;
     }
 
@@ -70,15 +66,11 @@ public class MemoriaRamService {
                 memoriaRamDTO.getNome(),
                 memoriaRamDTO.getPreco(),
                 memoriaRamDTO.getFabricante(),
-                memoriaRamDTO.getChipset(),
-                memoriaRamDTO.getQtdSlotsRam(),
-                memoriaRamDTO.getMaxRamSuportada(),
-                memoriaRamDTO.getTipoRamSuportado(),
-                memoriaRamDTO.getConsumo(),
-                memoriaRamDTO.getModelo(),
-                socketCpu
+                memoriaRamDTO.getCapacidade(),
+                memoriaRamDTO.getFrequencia(),
+                memoriaRamDTO.getTipo(),
+                memoriaRamDTO.getConsumo()
         );
         return memoriaRam;
     }
-
 }

@@ -57,20 +57,22 @@ public class UsuarioService {
     }
 
     public UsuarioDTO convertToDTO(Usuario usuario) {
-        UsuarioDTO usuarioDTO = new UsuarioDTO();
-        usuarioDTO.setId(usuario.getId());
-        usuarioDTO.setNome(usuario.getNome());
-        usuarioDTO.setEmail(usuario.getEmail());
-        usuarioDTO.setSenha(usuario.getSenha());
+        UsuarioDTO usuarioDTO = new UsuarioDTO(
+                usuario.getId(),
+                usuario.getNome(),
+                usuario.getEmail(),
+                usuario.getSenha()
+        );
         return usuarioDTO;
     }
 
     public Usuario convertToEntity(UsuarioDTO usuarioDTO) {
-        Usuario usuario = new Usuario();
-        usuario.setId(usuarioDTO.getId());
-        usuario.setNome(usuarioDTO.getNome());
-        usuario.setEmail(usuarioDTO.getEmail());
-        usuario.setSenha(usuarioDTO.getSenha());
+        Usuario usuario = new Usuario(
+                usuarioDTO.getId(),
+                usuarioDTO.getNome(),
+                usuarioDTO.getEmail(),
+                usuarioDTO.getSenha()
+        );
         return usuario;
     }
 }

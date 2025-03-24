@@ -56,18 +56,20 @@ public class SocketCpuService {
     }
 
     public SocketCPU convertToEntity(SocketCpuDTO socketCpuDTO){
-        SocketCPU socketCPU = new SocketCPU();
-        socketCPU.setId(socketCpuDTO.getId());
-        socketCPU.setNome(socketCpuDTO.getNome());
-        socketCPU.setDescricao(socketCpuDTO.getDescricao());
+        SocketCPU socketCPU = new SocketCPU(
+                socketCpuDTO.getId(),
+                socketCpuDTO.getNome(),
+                socketCpuDTO.getDescricao()
+        );
         return socketCPU;
     }
 
     public SocketCpuDTO convertToDTO(SocketCPU socketCpu){
-        SocketCpuDTO socketCpuDTO = new SocketCpuDTO();
-        socketCpuDTO.setId(socketCpu.getId());
-        socketCpuDTO.setNome(socketCpu.getNome());
-        socketCpuDTO.setDescricao(socketCpu.getDescricao());
+        SocketCpuDTO socketCpuDTO = new SocketCpuDTO(
+            socketCpu.getId(),
+            socketCpu.getNome(),
+            socketCpu.getDescricao()
+        );
         return socketCpuDTO;
     }
 }

@@ -1,6 +1,7 @@
 package com.projetoPC.dev.dtos;
 import com.projetoPC.dev.enums.Modelo;
 import com.projetoPC.dev.models.SocketCPU;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -31,7 +32,7 @@ public class PlacaMaeDTO {
     @Size(min = 2, max = 100, message = "O fabricante deve ter entre 2 e 100 caracteres")
     private String fabricante;
 
-    @NotNull(message = "O chipset não pode estar em branco")
+    @NotBlank(message = "O chipset não pode estar em branco")
     @Size(min = 2, max = 50, message = "O chipset deve ter entre 2 e 50 caracteres")
     private String chipset;
 
@@ -52,9 +53,11 @@ public class PlacaMaeDTO {
     private BigDecimal consumo;
 
     @NotNull(message = "O socket da CPU não pode estar em branco")
+    @Valid
     private SocketCpuDTO socketCpu;
 
     private List<Modelo> modelo;
+
 
     public PlacaMaeDTO(Long id, String nome, BigDecimal preco, String fabricante, String chipset, Integer qtdSlotsRam, Integer maxRamSuportada, String tipoRamSuportado, BigDecimal consumo, List<Modelo> modelo, SocketCpuDTO socketCpu) {
         this.id = id;

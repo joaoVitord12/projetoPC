@@ -23,7 +23,7 @@ public class PlacaMaeService {
 
     public PlacaMaeDTO atualizarPlacaMae(PlacaMaeDTO placaMaeDTO) {
         PlacaMae placaMae = placaMaeRepository.findById(placaMaeDTO.getId()).orElseThrow(() ->
-                new IllegalArgumentException("Placa MAE não encontrado com o ID: " + placaMaeDTO.getId()));
+                new IllegalArgumentException("Placa mãe não encontrado com o ID: " + placaMaeDTO.getId()));
         placaMae = convertToEntity(placaMaeDTO);
         placaMaeRepository.save(placaMae);
         return convertToDTO(placaMae);
@@ -31,7 +31,7 @@ public class PlacaMaeService {
 
     public void deletarPlacaMae(Long id) {
         PlacaMae placaMae = placaMaeRepository.findById(id).orElseThrow(() ->
-                new IllegalArgumentException("Placa MAE não encontrado com o ID: " + id));
+                new IllegalArgumentException("Placa mãe não encontrado com o ID: " + id));
         placaMaeRepository.delete(placaMae);
     }
 
@@ -42,7 +42,7 @@ public class PlacaMaeService {
 
     public PlacaMaeDTO buscarPlacaMaePorId(Long id) {
         PlacaMae placaMae = placaMaeRepository.findById(id).orElseThrow(() ->
-                new IllegalArgumentException("Placa MAE não encontrado com o ID: " + id));
+                new IllegalArgumentException("Placa mãe não encontrado com o ID: " + id));
         return convertToDTO(placaMae);
     }
 
