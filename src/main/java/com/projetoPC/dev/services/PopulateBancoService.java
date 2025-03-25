@@ -13,14 +13,11 @@ import java.util.List;
 
 @Service
 public class PopulateBancoService {
-    @Autowired
-    private UsuarioService usuarioService;
+    @Autowired private UsuarioService usuarioService;
 
-    @Autowired
-    private SocketCpuService socketCpuService;
+    @Autowired private SocketCpuService socketCpuService;
 
-    @Autowired
-    private MemoriaRamService memoriaRamService;
+    @Autowired private MemoriaRamService memoriaRamService;
 
     @PostConstruct
     public void populateUsuarios() {

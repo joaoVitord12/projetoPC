@@ -41,7 +41,7 @@ public class UsuarioService {
 
     public void deletarUsuario(Long id){
         Usuario usuario = usuarioRepository.findById(id).orElseThrow(() ->
-                new BusinessException("Usuário não encontrado com o ID: " + id));
+                new BusinessException(MSG_USUARIO));
         usuarioRepository.delete(usuario);
     }
 
@@ -52,7 +52,7 @@ public class UsuarioService {
 
     public UsuarioDTO buscarUsuarioPorId(Long id) {
         Usuario usuario = usuarioRepository.findById(id).orElseThrow(() ->
-                new BusinessException("Usuário não encontrado com o ID: " + id));
+                new BusinessException(MSG_USUARIO));
         return convertToDTO(usuario);
     }
 
