@@ -12,7 +12,17 @@ import java.util.List;
 @RequestMapping("/api/socket-cpu")
 public class SocketCpuController {
 
-    @Autowired SocketCpuService socketCpuService;
+    @Autowired private SocketCpuService socketCpuService;
+
+    @GetMapping
+    public ResponseEntity<List<SocketCpuDTO>> listarSocketCpus() {
+        List<SocketCpuDTO> list = socketCpuService.listarSocketCpus();
+        return ResponseEntity.ok(list);
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<SocketCpuDTO> buscarSocketCpuPorId(@PathVariable Long id) {
+        return ResponseEntity.ok(socketCpuService.buscarSocketCpuPorId(id));
+    }
 
     @PostMapping
     public ResponseEntity<SocketCpuDTO> cadastrarSocketCpu(@RequestBody SocketCpuDTO socketCpuDTO) {
@@ -24,21 +34,9 @@ public class SocketCpuController {
         return ResponseEntity.ok(socketCpuService.atualizarSocketCpu(socketCpuDTO));
     }
 
-    @GetMapping
-    public ResponseEntity<List<SocketCpuDTO>> listarSocketCpus() {
-        List<SocketCpuDTO> list = socketCpuService.listarSocketCpus();
-        return ResponseEntity.ok(list);
-    }
-
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarSocketCpu(@PathVariable Long id) {
         socketCpuService.deletarSocketCpu(id);
         return ResponseEntity.noContent().build();
     }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<SocketCpuDTO> buscarSocketCpuPorId(@PathVariable Long id) {
-        return ResponseEntity.ok(socketCpuService.buscarSocketCpuPorId(id));
-    }
-
 }

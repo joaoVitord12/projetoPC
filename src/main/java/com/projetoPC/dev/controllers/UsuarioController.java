@@ -12,7 +12,18 @@ import java.util.List;
 @RequestMapping("/api/usuarios")
 public class UsuarioController {
 
-    @Autowired UsuarioService usuarioService;
+    @Autowired private UsuarioService usuarioService;
+
+    @GetMapping
+    public ResponseEntity<List<UsuarioDTO>> listarUsuarios() {
+        List<UsuarioDTO> list = usuarioService.listarUsuarios();
+        return ResponseEntity.ok(list);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<UsuarioDTO> buscarUsuarioPorId(@PathVariable Long id) {
+        return ResponseEntity.ok(usuarioService.buscarUsuarioPorId(id));
+    }
 
     @PostMapping
     public ResponseEntity<UsuarioDTO> cadastrarUsuario(@RequestBody UsuarioDTO usuarioDTO) {
@@ -28,16 +39,5 @@ public class UsuarioController {
     public ResponseEntity<Void> deletarUsuario(@PathVariable Long id){
         usuarioService.deletarUsuario(id);
         return ResponseEntity.noContent().build();
-    }
-
-    @GetMapping
-    public ResponseEntity<List<UsuarioDTO>> listarUsuarios() {
-        List<UsuarioDTO> list = usuarioService.listarUsuarios();
-        return ResponseEntity.ok(list);
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<UsuarioDTO> buscarUsuarioPorId(@PathVariable Long id) {
-        return ResponseEntity.ok(usuarioService.buscarUsuarioPorId(id));
     }
 }

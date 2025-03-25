@@ -2,6 +2,7 @@ package com.projetoPC.dev.services;
 
 import com.projetoPC.dev.dtos.MemoriaRamDTO;
 import com.projetoPC.dev.dtos.SocketCpuDTO;
+import com.projetoPC.dev.exceptions.BusinessException;
 import com.projetoPC.dev.models.MemoriaRam;
 import com.projetoPC.dev.models.SocketCPU;
 import com.projetoPC.dev.repositories.MemoriaRamRepository;
@@ -23,7 +24,7 @@ public class MemoriaRamService {
 
     public MemoriaRamDTO atualizarMemoriaRam(MemoriaRamDTO memoriaRamDTO) {
         MemoriaRam memoriaRam = memoriaRamRepository.findById(memoriaRamDTO.getId()).orElseThrow(() ->
-                new IllegalArgumentException("Placa ram não encontrado com o ID: " + memoriaRamDTO.getId()));
+                new BusinessException("Memoria ram não encontrado com o ID: " + memoriaRamDTO.getId()));
         memoriaRam = convertToEntity(memoriaRamDTO);
         memoriaRamRepository.save(memoriaRam);
         return convertToDTO(memoriaRam);
@@ -31,7 +32,7 @@ public class MemoriaRamService {
 
     public void deletarMemoriaRam(Long id) {
         MemoriaRam memoriaRam = memoriaRamRepository.findById(id).orElseThrow(() ->
-                new IllegalArgumentException("Placa ram não encontrado com o ID: " + id));
+                new BusinessException("Memoria ram não encontrado com o ID: " + id));
         memoriaRamRepository.delete(memoriaRam);
     }
 
@@ -42,7 +43,7 @@ public class MemoriaRamService {
 
     public MemoriaRamDTO buscarMemoriaRamPorId(Long id) {
         MemoriaRam memoriaRam = memoriaRamRepository.findById(id).orElseThrow(() ->
-                new IllegalArgumentException("Memoria ram não encontrado com o ID: " + id));
+                new BusinessException("Memoria ram não encontrado com o ID: " + id));
         return convertToDTO(memoriaRam);
     }
 
@@ -54,8 +55,7 @@ public class MemoriaRamService {
                 memoriaRam.getFabricante(),
                 memoriaRam.getCapacidade(),
                 memoriaRam.getFrequencia(),
-                memoriaRam.getTipo(),
-                memoriaRam.getConsumo()
+                memoriaRam.getTipo()
         );
         return memoriaRamDTO;
     }
@@ -68,8 +68,7 @@ public class MemoriaRamService {
                 memoriaRamDTO.getFabricante(),
                 memoriaRamDTO.getCapacidade(),
                 memoriaRamDTO.getFrequencia(),
-                memoriaRamDTO.getTipo(),
-                memoriaRamDTO.getConsumo()
+                memoriaRamDTO.getTipo()
         );
         return memoriaRam;
     }

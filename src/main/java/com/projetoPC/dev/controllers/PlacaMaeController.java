@@ -6,11 +6,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/placa-mae")
 public class PlacaMaeController {
 
-    @Autowired PlacaMaeService placaMaeService;
+    @Autowired private PlacaMaeService placaMaeService;
+
+    @GetMapping
+    public ResponseEntity<List<PlacaMaeDTO>> listarPlacaMaes() {
+        List<PlacaMaeDTO> list = placaMaeService.listarPlacaMaes();
+        return ResponseEntity.ok(list);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<PlacaMaeDTO> buscarPlacaMaePorId(@PathVariable Long id) {
+        return ResponseEntity.ok(placaMaeService.buscarPlacaMaePorId(id));
+    }
 
     @PostMapping
     public ResponseEntity<PlacaMaeDTO> cadastrarPlacaMae(@RequestBody PlacaMaeDTO placaMaeDTO) {

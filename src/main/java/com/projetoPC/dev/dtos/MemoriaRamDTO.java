@@ -44,12 +44,7 @@ public class MemoriaRamDTO {
     @Size(max = 50, message = "O tipo deve ter no máximo 50 caracteres")
     private String tipo;
 
-    @NotNull(message = "O consumo é obrigatório")
-    @Min(value = 0, message = "O consumo não pode ser negativo")
-    private Integer consumo;
-
-
-    public MemoriaRamDTO(Long id, String nome, BigDecimal preco, String fabricante, Integer capacidade, Integer frequencia, String tipo, Integer consumo) {
+    public MemoriaRamDTO(Long id, String nome, BigDecimal preco, String fabricante, Integer capacidade, Integer frequencia, String tipo) {
         this.id = id;
         this.nome = nome;
         this.preco = preco;
@@ -57,6 +52,5 @@ public class MemoriaRamDTO {
         this.capacidade = capacidade;
         this.frequencia = frequencia;
         this.tipo = tipo;
-        this.consumo = consumo;
     }
 }

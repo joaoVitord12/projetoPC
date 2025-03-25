@@ -35,7 +35,4 @@ public class MemoriaRam {
     @Column(nullable = false, length = 10)
     private String tipo;
 
-    @Column(nullable = false, precision = 10, scale = 2)
-    private Integer consumo;
-
 }

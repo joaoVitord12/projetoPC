@@ -2,6 +2,7 @@ package com.projetoPC.dev.services;
 
 import com.projetoPC.dev.dtos.PlacaMaeDTO;
 import com.projetoPC.dev.dtos.SocketCpuDTO;
+import com.projetoPC.dev.exceptions.BusinessException;
 import com.projetoPC.dev.models.PlacaMae;
 import com.projetoPC.dev.models.SocketCPU;
 import com.projetoPC.dev.repositories.PlacaMaeRepository;
@@ -23,7 +24,7 @@ public class PlacaMaeService {
 
     public PlacaMaeDTO atualizarPlacaMae(PlacaMaeDTO placaMaeDTO) {
         PlacaMae placaMae = placaMaeRepository.findById(placaMaeDTO.getId()).orElseThrow(() ->
-                new IllegalArgumentException("Placa mãe não encontrado com o ID: " + placaMaeDTO.getId()));
+                new BusinessException("Placa mãe não encontrado com o ID: " + placaMaeDTO.getId()));
         placaMae = convertToEntity(placaMaeDTO);
         placaMaeRepository.save(placaMae);
         return convertToDTO(placaMae);
@@ -31,7 +32,7 @@ public class PlacaMaeService {
 
     public void deletarPlacaMae(Long id) {
         PlacaMae placaMae = placaMaeRepository.findById(id).orElseThrow(() ->
-                new IllegalArgumentException("Placa mãe não encontrado com o ID: " + id));
+                new BusinessException("Placa mãe não encontrado com o ID: " + id));
         placaMaeRepository.delete(placaMae);
     }
 
@@ -42,7 +43,7 @@ public class PlacaMaeService {
 
     public PlacaMaeDTO buscarPlacaMaePorId(Long id) {
         PlacaMae placaMae = placaMaeRepository.findById(id).orElseThrow(() ->
-                new IllegalArgumentException("Placa mãe não encontrado com o ID: " + id));
+                new BusinessException("Placa mãe não encontrado com o ID: " + id));
         return convertToDTO(placaMae);
     }
 
