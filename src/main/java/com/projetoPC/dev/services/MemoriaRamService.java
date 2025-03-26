@@ -2,9 +2,11 @@ package com.projetoPC.dev.services;
 
 import com.projetoPC.dev.dtos.MemoriaRamDTO;
 import com.projetoPC.dev.dtos.SocketCpuDTO;
+import com.projetoPC.dev.dtos.MemoriaRamDTO;
 import com.projetoPC.dev.exceptions.BusinessException;
 import com.projetoPC.dev.models.MemoriaRam;
 import com.projetoPC.dev.models.SocketCPU;
+import com.projetoPC.dev.models.MemoriaRam;
 import com.projetoPC.dev.repositories.MemoriaRamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,37 +15,37 @@ import java.util.List;
 
 @Service
 public class MemoriaRamService {
-
+    private static final String MSG_MEMORIARAM = "GPU não encontrado";
+    
     @Autowired private MemoriaRamRepository memoriaRamRepository;
-
-    @Autowired private SocketCpuService socketCpuService;
-
+    
     public MemoriaRamDTO cadastrarMemoriaRam(MemoriaRamDTO memoriaRamDTO) {
-        return convertToDTO(memoriaRamRepository.save(convertToEntity(memoriaRamDTO)));
+        MemoriaRam memoriaRam = convertToEntity(memoriaRamDTO);
+        return convertToDTO(memoriaRamRepository.save(memoriaRam));
     }
 
-    public MemoriaRamDTO atualizarMemoriaRam(MemoriaRamDTO memoriaRamDTO) {
+    public MemoriaRamDTO atualizarMemoriaRam(MemoriaRamDTO memoriaRamDTO){
         MemoriaRam memoriaRam = memoriaRamRepository.findById(memoriaRamDTO.getId()).orElseThrow(() ->
-                new BusinessException("Memoria ram não encontrado com o ID: " + memoriaRamDTO.getId()));
+                new BusinessException(MSG_MEMORIARAM));
+        
         memoriaRam = convertToEntity(memoriaRamDTO);
-        memoriaRamRepository.save(memoriaRam);
-        return convertToDTO(memoriaRam);
+        return convertToDTO(memoriaRamRepository.save(memoriaRam));
     }
 
-    public void deletarMemoriaRam(Long id) {
+    public void deletarMemoriaRam(Long id){
         MemoriaRam memoriaRam = memoriaRamRepository.findById(id).orElseThrow(() ->
-                new BusinessException("Memoria ram não encontrado com o ID: " + id));
+                new BusinessException(MSG_MEMORIARAM));
         memoriaRamRepository.delete(memoriaRam);
     }
 
-    public List<MemoriaRamDTO> listarMemoriaRams() {
+    public List<MemoriaRamDTO> listarMemoriaRams( ) {
         List<MemoriaRam> memoriaRams = memoriaRamRepository.findAll();
         return memoriaRams.stream().map(this::convertToDTO).toList();
     }
 
     public MemoriaRamDTO buscarMemoriaRamPorId(Long id) {
         MemoriaRam memoriaRam = memoriaRamRepository.findById(id).orElseThrow(() ->
-                new BusinessException("Memoria ram não encontrado com o ID: " + id));
+                new BusinessException(MSG_MEMORIARAM));
         return convertToDTO(memoriaRam);
     }
 

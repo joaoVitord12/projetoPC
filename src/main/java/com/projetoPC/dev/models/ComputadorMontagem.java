@@ -27,4 +27,12 @@ public class ComputadorMontagem {
 
     @OneToMany(mappedBy = "computadorMontagem", cascade = CascadeType.ALL)
     private List<ComponentesMontados> componentes;
+
+    private double custoTotal;
+
+    private double voltagemTotal;
+
+    private double consumoEstimadoKwh;
+
+    private int potenciaFonteRecomendada;
 }

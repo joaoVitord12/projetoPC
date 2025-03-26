@@ -11,7 +11,6 @@ import java.math.BigInteger;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class Fonte {
 
     @Id
@@ -29,4 +28,12 @@ public class Fonte {
 
     @Column(nullable = true, length = 50)
     private Integer efficiencyRating;
+
+    public Fonte(Long id, BigDecimal preco, String fabricante, Integer potencia, Integer efficiencyRating) {
+        this.id = id;
+        this.preco = preco;
+        this.fabricante = fabricante;
+        this.potencia = potencia;
+        this.efficiencyRating = efficiencyRating;
     }
+}

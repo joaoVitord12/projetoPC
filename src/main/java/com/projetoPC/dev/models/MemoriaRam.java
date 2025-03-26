@@ -10,7 +10,6 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class MemoriaRam {
 
     @Id
@@ -35,4 +34,13 @@ public class MemoriaRam {
     @Column(nullable = false, length = 10)
     private String tipo;
 
+    public MemoriaRam(Long id, String nome, BigDecimal preco, String fabricante, Integer capacidade, Integer frequencia, String tipo) {
+        this.id = id;
+        this.nome = nome;
+        this.preco = preco;
+        this.fabricante = fabricante;
+        this.capacidade = capacidade;
+        this.frequencia = frequencia;
+        this.tipo = tipo;
+    }
 }

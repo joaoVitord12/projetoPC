@@ -10,7 +10,6 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class Cpu {
 
     @Id
@@ -38,4 +37,15 @@ public class Cpu {
 
     @Column(nullable = true)
     private Integer threads;
+
+    public Cpu(Long id, String nome, BigDecimal preco, BigDecimal consumo, String fabricante, SocketCPU socketCpu, Integer nucleos, Integer threads) {
+        this.id = id;
+        this.nome = nome;
+        this.preco = preco;
+        this.consumo = consumo;
+        this.fabricante = fabricante;
+        this.socketCpu = socketCpu;
+        this.nucleos = nucleos;
+        this.threads = threads;
+    }
 }

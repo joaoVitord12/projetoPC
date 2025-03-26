@@ -8,7 +8,6 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class SocketCPU {
 
     @Id
@@ -20,4 +19,10 @@ public class SocketCPU {
 
     @Column(nullable = true)
     private String descricao;
+
+    public SocketCPU(Long id, String nome, String descricao) {
+        this.id = id;
+        this.nome = nome;
+        this.descricao = descricao;
+    }
 }

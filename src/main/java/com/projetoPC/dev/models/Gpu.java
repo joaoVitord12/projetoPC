@@ -10,7 +10,6 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class Gpu {
 
     @Id
@@ -37,4 +36,15 @@ public class Gpu {
 
     @Column(nullable = true)
     private String barramento;
+
+    public Gpu(Long id, String nome, BigDecimal preco, BigDecimal consumo, String fabricante, Integer memoriaVRAM, String barramento, String tipoMemoria) {
+        this.id = id;
+        this.nome = nome;
+        this.preco = preco;
+        this.consumo = consumo;
+        this.fabricante = fabricante;
+        this.memoriaVRAM = memoriaVRAM;
+        this.barramento = barramento;
+        this.tipoMemoria = tipoMemoria;
+    }
 }

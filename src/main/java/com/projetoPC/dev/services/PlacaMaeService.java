@@ -14,6 +14,8 @@ import java.util.List;
 @Service
 public class PlacaMaeService {
 
+    private static final String MSG_PLACAMAE = "Placa mãe não encontrado";
+
     @Autowired private PlacaMaeRepository placaMaeRepository;
 
     @Autowired private SocketCpuService socketCpuService;
@@ -24,15 +26,14 @@ public class PlacaMaeService {
 
     public PlacaMaeDTO atualizarPlacaMae(PlacaMaeDTO placaMaeDTO) {
         PlacaMae placaMae = placaMaeRepository.findById(placaMaeDTO.getId()).orElseThrow(() ->
-                new BusinessException("Placa mãe não encontrado com o ID: " + placaMaeDTO.getId()));
+                new BusinessException(MSG_PLACAMAE));
         placaMae = convertToEntity(placaMaeDTO);
-        placaMaeRepository.save(placaMae);
-        return convertToDTO(placaMae);
+        return convertToDTO( placaMaeRepository.save(placaMae));
     }
 
     public void deletarPlacaMae(Long id) {
         PlacaMae placaMae = placaMaeRepository.findById(id).orElseThrow(() ->
-                new BusinessException("Placa mãe não encontrado com o ID: " + id));
+                new BusinessException(MSG_PLACAMAE));
         placaMaeRepository.delete(placaMae);
     }
 
@@ -43,7 +44,7 @@ public class PlacaMaeService {
 
     public PlacaMaeDTO buscarPlacaMaePorId(Long id) {
         PlacaMae placaMae = placaMaeRepository.findById(id).orElseThrow(() ->
-                new BusinessException("Placa mãe não encontrado com o ID: " + id));
+                new BusinessException(MSG_PLACAMAE));
         return convertToDTO(placaMae);
     }
 

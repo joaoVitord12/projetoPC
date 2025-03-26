@@ -13,6 +13,8 @@ import java.util.List;
 @Service
 public class SocketCpuService {
 
+    private static final String MSG_SOCKETCPU = "Socket CPU não encontrado";
+
     @Autowired private SocketCpuRepository socketCpuRepository;
 
     @Autowired private SocketCpuSpec socketCpuSpec;
@@ -29,7 +31,7 @@ public class SocketCpuService {
         socketCpuSpec.verificarIdNulo(socketCpuDTO.getId());
 
         SocketCPU socketCpu = socketCpuRepository.findById(socketCpuDTO.getId()).orElseThrow(() ->
-                new BusinessException("Socket CPU não encontrado com o ID: " + socketCpuDTO.getId()));
+                new BusinessException(MSG_SOCKETCPU));
 
         socketCpuSpec.verificarNomeEmUso(socketCpu, socketCpuDTO);
 
@@ -40,13 +42,13 @@ public class SocketCpuService {
 
     public void deletarSocketCpu(Long id) {
         SocketCPU socketCpu = socketCpuRepository.findById(id).orElseThrow(() ->
-                new BusinessException("Socket CPU não encontrado com o ID: " + id));
+                new BusinessException(MSG_SOCKETCPU));
         socketCpuRepository.delete(socketCpu);
     }
 
     public SocketCpuDTO buscarSocketCpuPorId(Long id) {
         SocketCPU socketCpu = socketCpuRepository.findById(id).orElseThrow(() ->
-                new BusinessException("Socket CPU não encontrado com o ID: " + id));
+                new BusinessException(MSG_SOCKETCPU));
         return convertToDTO(socketCpu);
     }
 
