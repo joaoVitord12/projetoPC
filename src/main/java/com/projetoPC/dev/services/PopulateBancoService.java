@@ -1,8 +1,6 @@
 package com.projetoPC.dev.services;
 
-import com.projetoPC.dev.dtos.MemoriaRamDTO;
-import com.projetoPC.dev.dtos.SocketCpuDTO;
-import com.projetoPC.dev.dtos.UsuarioDTO;
+import com.projetoPC.dev.dtos.*;
 import com.projetoPC.dev.models.SocketCPU;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +16,10 @@ public class PopulateBancoService {
     @Autowired private SocketCpuService socketCpuService;
 
     @Autowired private MemoriaRamService memoriaRamService;
+
+    @Autowired private GpuService gpuService;
+
+    @Autowired private CpuService cpuService;
 
     @PostConstruct
     public void populateUsuarios() {
@@ -139,7 +141,7 @@ public class PopulateBancoService {
     }
 
     @PostConstruct
-    public void populate() {
+    public void populateMemoriaRam() {
         if (memoriaRamService.listarMemoriaRams().isEmpty()) {
             MemoriaRamDTO mem1 = new MemoriaRamDTO(null, "HyperX Fury", new BigDecimal("299.90"), "Kingston", 8, 3200, "DDR4");
             memoriaRamService.cadastrarMemoriaRam(mem1);
@@ -158,4 +160,24 @@ public class PopulateBancoService {
             System.out.println("⚠️ Memórias RAM já populadas.");
         }
     }
+
+//    @PostConstruct
+//    public void populateCpu() {
+//        if (cpuService.listarCpus().isEmpty()) {
+//            SocketCpuDTO socketCpuDto = socketCpuService.listarSocketCpus().get(0);
+//
+//            CpuDTO cpu1 = new CpuDTO(null, "Intel Core i5-12400", new BigDecimal("1200.00"), new BigDecimal("65"), "Intel", socketCpuDto, 6, 12);
+//            cpuService.cadastrarCpu(cpu1);
+//
+//            CpuDTO cpu2 = new CpuDTO(null, "AMD Ryzen 5 5600X", new BigDecimal("1100.00"), new BigDecimal("65"), "AMD", socketCpuDto, 6, 12);
+//            cpuService.cadastrarCpu(cpu2);
+//
+//            CpuDTO cpu3 = new CpuDTO(null, "Intel Core i7-12700K", new BigDecimal("2200.00"), new BigDecimal("125"), "Intel", socketCpuDto, 12, 20);
+//            cpuService.cadastrarCpu(cpu3);
+//
+//            System.out.println("✅ CPUs populadas com sucesso!");
+//        } else {
+//            System.out.println("⚠️ CPUs já populadas.");
+//        }
+//    }
 }
