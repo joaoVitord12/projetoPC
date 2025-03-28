@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PlacaMaeRepository extends JpaRepository<PlacaMae, Long> {
+    PlacaMae findByNome(String nome);
 }

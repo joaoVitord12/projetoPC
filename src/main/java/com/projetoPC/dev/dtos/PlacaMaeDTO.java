@@ -54,12 +54,12 @@ public class PlacaMaeDTO {
 
     @NotNull(message = "O socket da CPU não pode estar em branco")
     @Valid
-    private SocketCpuDTO socketCpu;
+    private SocketCpuDTO socketCpuDTO;
 
     private List<Modelo> modelo;
 
 
-    public PlacaMaeDTO(Long id, String nome, BigDecimal preco, String fabricante, String chipset, Integer qtdSlotsRam, Integer maxRamSuportada, String tipoRamSuportado, BigDecimal consumo, List<Modelo> modelo, SocketCpuDTO socketCpu) {
+    public PlacaMaeDTO(Long id, String nome, BigDecimal preco, String fabricante, String chipset, Integer qtdSlotsRam, Integer maxRamSuportada, String tipoRamSuportado, BigDecimal consumo, List<Modelo> modelo, SocketCpuDTO socketCpuDTO) {
         this.id = id;
         this.nome = nome;
         this.preco = preco;
@@ -70,6 +70,6 @@ public class PlacaMaeDTO {
         this.tipoRamSuportado = tipoRamSuportado;
         this.consumo = consumo;
         this.modelo = modelo;
-        this.socketCpu = socketCpu;
+        this.socketCpuDTO = socketCpuDTO;
     }
 }

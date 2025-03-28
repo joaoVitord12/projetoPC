@@ -46,6 +46,11 @@ public class FonteService {
         return convertToDTO(fonte);
     }
 
+    public FonteDTO buscarFontePorNome(String nome) {
+        Fonte fonte = fonteRepository.findByNome(nome);
+        return convertToDTO(fonte);
+    }
+
     public FonteDTO convertToDTO(Fonte fonte) {
         FonteDTO fonteDTO = new FonteDTO(
                 fonte.getId(),

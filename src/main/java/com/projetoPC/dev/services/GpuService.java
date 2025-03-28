@@ -49,6 +49,11 @@ public class GpuService {
         return convertToDTO(gpu);
     }
 
+    public GpuDTO buscarGpuPorNome(String nome) {
+        Gpu gpu = gpuRepository.findByNome(nome);
+        return convertToDTO(gpu);
+    }
+
     public GpuDTO convertToDTO(Gpu gpu) {
         GpuDTO gpuDTO = new GpuDTO(
                 gpu.getId(),

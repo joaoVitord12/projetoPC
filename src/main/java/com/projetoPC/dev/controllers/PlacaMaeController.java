@@ -25,6 +25,11 @@ public class PlacaMaeController {
         return ResponseEntity.ok(placaMaeService.buscarPlacaMaePorId(id));
     }
 
+    @GetMapping("nome")
+    public ResponseEntity<PlacaMaeDTO> buscarPlacaMaePorNome(@RequestParam String nome) {
+        return ResponseEntity.ok(placaMaeService.buscarPlacaMaePorNome(nome));
+    }
+
     @PostMapping
     public ResponseEntity<PlacaMaeDTO> cadastrarPlacaMae(@RequestBody PlacaMaeDTO placaMaeDTO) {
         return ResponseEntity.ok(placaMaeService.cadastrarPlacaMae(placaMaeDTO));

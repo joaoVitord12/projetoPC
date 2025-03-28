@@ -57,6 +57,11 @@ public class SocketCpuService {
         return socketCpus.stream().map(this::convertToDTO).toList();
     }
 
+    public SocketCpuDTO buscarSocketCpuPorNome(String nome) {
+        SocketCPU socketCpu = socketCpuRepository.findByNome(nome);
+        return convertToDTO(socketCpu);
+    }
+
     public SocketCPU convertToEntity(SocketCpuDTO socketCpuDTO){
         SocketCPU socketCPU = new SocketCPU(
                 socketCpuDTO.getId(),

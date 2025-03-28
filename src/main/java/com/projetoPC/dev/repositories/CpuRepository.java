@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CpuRepository extends JpaRepository<Cpu, Long> {
-
+    Cpu findByNome(String nome);
 }

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/memoria-rams")
+@RequestMapping("/api/memoria-ram")
 public class MemoriaRamController {
 
     @Autowired private MemoriaRamService memoriaRamService;

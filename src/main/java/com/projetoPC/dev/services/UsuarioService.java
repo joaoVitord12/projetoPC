@@ -56,6 +56,11 @@ public class UsuarioService {
         return convertToDTO(usuario);
     }
 
+    public UsuarioDTO buscarUsuarioPorEmail(String email) {
+        Usuario usuario = usuarioRepository.findByEmail(email);
+        return convertToDTO(usuario);
+    }
+
     public UsuarioDTO convertToDTO(Usuario usuario) {
         UsuarioDTO usuarioDTO = new UsuarioDTO(
                 usuario.getId(),

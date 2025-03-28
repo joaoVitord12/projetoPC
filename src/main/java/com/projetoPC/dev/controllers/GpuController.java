@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/gpus")
+@RequestMapping("/api/gpu")
 public class GpuController {
     
     @Autowired
@@ -24,6 +24,11 @@ public class GpuController {
     @GetMapping("/{id}")
     public ResponseEntity<GpuDTO> buscarGpuPorId(@PathVariable Long id) {
         return ResponseEntity.ok(gpuService.buscarGpuPorId(id));
+    }
+
+    @GetMapping("/nome")
+    public ResponseEntity<GpuDTO> buscarGpuPorNome(@RequestParam String nome) {
+        return ResponseEntity.ok(gpuService.buscarGpuPorNome(nome));
     }
 
     @PostMapping

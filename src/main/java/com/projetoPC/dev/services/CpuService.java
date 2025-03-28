@@ -48,6 +48,11 @@ public class CpuService {
         return convertToDTO(cpu);
     }
 
+    public CpuDTO buscarCpuPorNome(String nome) {
+        Cpu cpu = cpuRepository.findByNome(nome);
+        return convertToDTO(cpu);
+    }
+
     public CpuDTO convertToDTO(Cpu cpu) {
         SocketCpuDTO socketCpuDTO = socketCpuService.convertToDTO(cpu.getSocketCpu());
 

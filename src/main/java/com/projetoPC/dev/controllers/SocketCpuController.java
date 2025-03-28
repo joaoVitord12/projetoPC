@@ -24,6 +24,11 @@ public class SocketCpuController {
         return ResponseEntity.ok(socketCpuService.buscarSocketCpuPorId(id));
     }
 
+    @GetMapping("/nome")
+    public ResponseEntity<SocketCpuDTO> buscarSocketCpuPorNome(@RequestParam String nome) {
+        return ResponseEntity.ok(socketCpuService.buscarSocketCpuPorNome(nome));
+    }
+
     @PostMapping
     public ResponseEntity<SocketCpuDTO> cadastrarSocketCpu(@RequestBody SocketCpuDTO socketCpuDTO) {
         return ResponseEntity.ok(socketCpuService.cadastrarSocketCpu(socketCpuDTO));

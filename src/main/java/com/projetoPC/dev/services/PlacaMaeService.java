@@ -48,6 +48,11 @@ public class PlacaMaeService {
         return convertToDTO(placaMae);
     }
 
+    public PlacaMaeDTO buscarPlacaMaePorNome(String nome) {
+        PlacaMae placaMae = placaMaeRepository.findByNome(nome);
+        return convertToDTO(placaMae);
+    }
+
     public PlacaMaeDTO convertToDTO(PlacaMae placaMae) {
         SocketCpuDTO socketCpuDTO = socketCpuService.convertToDTO(placaMae.getSocketCpu());
 
@@ -69,7 +74,7 @@ public class PlacaMaeService {
     }
 
     public PlacaMae convertToEntity(PlacaMaeDTO placaMaeDTO) {
-        SocketCPU socketCpu = socketCpuService.convertToEntity(placaMaeDTO.getSocketCpu());
+        SocketCPU socketCpu = socketCpuService.convertToEntity(placaMaeDTO.getSocketCpuDTO());
 
         PlacaMae placaMae = new PlacaMae(
                 placaMaeDTO.getId(),

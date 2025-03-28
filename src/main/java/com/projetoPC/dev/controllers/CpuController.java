@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/cpus")
+@RequestMapping("/api/cpu")
 public class CpuController {
     
     @Autowired
@@ -24,6 +24,11 @@ public class CpuController {
     @GetMapping("/{id}")
     public ResponseEntity<CpuDTO> buscarCpuPorId(@PathVariable Long id) {
         return ResponseEntity.ok(cpuService.buscarCpuPorId(id));
+    }
+
+    @GetMapping("/nome")
+    public ResponseEntity<CpuDTO> buscarCpuPorNome(@RequestParam String nome) {
+        return ResponseEntity.ok(cpuService.buscarCpuPorNome(nome));
     }
 
     @PostMapping

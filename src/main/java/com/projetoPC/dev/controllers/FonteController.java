@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/fonte")
 public class FonteController {
 
     @Autowired private FonteService fonteService;
@@ -22,6 +23,11 @@ public class FonteController {
     @GetMapping("/{id}")
     public ResponseEntity<FonteDTO> buscarFontePorId(@PathVariable Long id) {
         return ResponseEntity.ok(fonteService.buscarFontePorId(id));
+    }
+
+    @GetMapping("/nome")
+    public ResponseEntity<FonteDTO> buscarFontePorNome(@RequestParam String nome) {
+        return ResponseEntity.ok(fonteService.buscarFontePorNome(nome));
     }
 
     @PostMapping
