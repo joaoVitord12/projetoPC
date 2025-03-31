@@ -57,7 +57,8 @@ public class FonteService {
                 fonte.getPreco(),
                 fonte.getFabricante(),
                 fonte.getPotencia(),
-                fonte.getEfficiencyRating()
+                fonte.getEfficiencyRating(),
+                fonte.getNome()
         );
         return fonteDTO;
     }
@@ -68,7 +69,8 @@ public class FonteService {
                 fonteDTO.getPreco(),
                 fonteDTO.getFabricante(),
                 fonteDTO.getPotencia(),
-                fonteDTO.getEfficiencyRating()
+                fonteDTO.getEfficiencyRating(),
+                fonteDTO.getNome()
         );
         return fonte;
     }

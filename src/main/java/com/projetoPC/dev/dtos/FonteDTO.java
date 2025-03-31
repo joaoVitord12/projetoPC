@@ -8,10 +8,13 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @NoArgsConstructor
-@Builder
 public class FonteDTO {
 
     private Long id;
+
+    @NotBlank(message = "O campo 'nome' é obrigatório e não pode estar vazio.")
+    @Size(max = 50, message = "O campo 'nome' deve ter no máximo 50 caracteres.")
+    private String nome;
 
     @NotNull(message = "O campo 'preço' é obrigatório.")
     @DecimalMin(value = "0.00", inclusive = false, message = "O campo 'preço' deve ser maior que zero.")
@@ -28,11 +31,12 @@ public class FonteDTO {
     @PositiveOrZero(message = "O campo 'efficiencyRating' deve ser um valor positivo ou zero.")
     private Integer efficiencyRating;
 
-    public FonteDTO(Long id, BigDecimal preco, String fabricante, Integer potencia, Integer efficiencyRating) {
+    public FonteDTO(Long id, BigDecimal preco, String fabricante, Integer potencia, Integer efficiencyRating, String nome) {
         this.id = id;
         this.preco = preco;
         this.fabricante = fabricante;
         this.potencia = potencia;
         this.efficiencyRating = efficiencyRating;
+        this.nome = nome;
     }
 }

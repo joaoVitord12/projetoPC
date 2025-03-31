@@ -9,7 +9,6 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @NoArgsConstructor
-@Builder
 public class CpuDTO {
 
     private Long id;

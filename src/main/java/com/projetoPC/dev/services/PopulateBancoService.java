@@ -2,6 +2,7 @@ package com.projetoPC.dev.services;
 
 import com.projetoPC.dev.dtos.*;
 import com.projetoPC.dev.enums.Modelo;
+import com.projetoPC.dev.models.Fonte;
 import com.projetoPC.dev.models.SocketCPU;
 import com.projetoPC.dev.repositories.SocketCpuRepository;
 import jakarta.annotation.PostConstruct;
@@ -313,45 +314,27 @@ public class PopulateBancoService {
             System.err.println("Erro ao popular CPUs: " + e.getMessage());
         }
     }
-    private void populateFonte() {
-        try {
-            if (fonteService.listarFontes().isEmpty()) {
-                FonteDTO fonte1 = FonteDTO.builder()
-                        .id(null)
-                        .preco(new BigDecimal("450.00"))
-                        .fabricante("Corsair")
-                        .potencia(650)
-                        .efficiencyRating(80)
-                        .build();
-                fonteService.cadastrarFonte(fonte1);
+    public void populateFonte() {
+        if (fonteService.listarFontes().isEmpty()) {
+            FonteDTO fonte1 = new FonteDTO(null, new BigDecimal("350.00"), "Corsair", 650, 80, "Corsair CX650");
+            fonteService.cadastrarFonte(fonte1);
 
-                FonteDTO fonte2 = FonteDTO.builder()
-                        .id(null)
-                        .preco(new BigDecimal("500.00"))
-                        .fabricante("EVGA")
-                        .potencia(750)
-                        .efficiencyRating(80)
-                        .build();
-                fonteService.cadastrarFonte(fonte2);
+            FonteDTO fonte2 = new FonteDTO(null, new BigDecimal("450.00"), "EVGA", 750, 80, "EVGA 750 BQ");
+            fonteService.cadastrarFonte(fonte2);
 
-                FonteDTO fonte3 = FonteDTO.builder()
-                        .id(null)
-                        .preco(new BigDecimal("400.00"))
-                        .fabricante("Seasonic")
-                        .potencia(600)
-                        .efficiencyRating(80)
-                        .build();
-                fonteService.cadastrarFonte(fonte3);
+            FonteDTO fonte3 = new FonteDTO(null, new BigDecimal("600.00"), "Seasonic", 850, 90, "Seasonic Focus GX-850");
+            fonteService.cadastrarFonte(fonte3);
 
-                System.out.println("✅ Fontes populadas com sucesso!");
-            } else {
-                System.out.println("⚠️ Fontes já populadas.");
-            }
-        } catch (Exception e) {
-            System.err.println("Erro ao popular Fontes: " + e.getMessage());
+            FonteDTO fonte4 = new FonteDTO(null, new BigDecimal("750.00"), "Cooler Master", 1000, 92, "Cooler Master MWE Gold 1000W");
+            fonteService.cadastrarFonte(fonte4);
+
+            System.out.println("✅ Fontes populadas com sucesso!");
+        } else {
+            System.out.println("⚠️ Fontes já populadas.");
         }
     }
 
 }
+
 
 
